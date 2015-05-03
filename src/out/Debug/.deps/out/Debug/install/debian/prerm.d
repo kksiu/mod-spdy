@@ -1,0 +1,1 @@
+cmd_out/Debug/install/debian/prerm := ln -f "install/debian/prerm" "out/Debug/install/debian/prerm" 2>/dev/null || (rm -rf "out/Debug/install/debian/prerm" && cp -af "install/debian/prerm" "out/Debug/install/debian/prerm")

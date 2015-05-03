@@ -1,0 +1,1 @@
+cmd_out/Release/install/common/updater := ln -f "install/common/updater" "out/Release/install/common/updater" 2>/dev/null || (rm -rf "out/Release/install/common/updater" && cp -af "install/common/updater" "out/Release/install/common/updater")

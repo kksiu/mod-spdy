@@ -1,0 +1,1 @@
+cmd_out/Debug/install/debian/conffiles.template := ln -f "install/debian/conffiles.template" "out/Debug/install/debian/conffiles.template" 2>/dev/null || (rm -rf "out/Debug/install/debian/conffiles.template" && cp -af "install/debian/conffiles.template" "out/Debug/install/debian/conffiles.template")

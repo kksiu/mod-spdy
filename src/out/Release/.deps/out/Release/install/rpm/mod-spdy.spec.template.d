@@ -1,0 +1,1 @@
+cmd_out/Release/install/rpm/mod-spdy.spec.template := ln -f "install/rpm/mod-spdy.spec.template" "out/Release/install/rpm/mod-spdy.spec.template" 2>/dev/null || (rm -rf "out/Release/install/rpm/mod-spdy.spec.template" && cp -af "install/rpm/mod-spdy.spec.template" "out/Release/install/rpm/mod-spdy.spec.template")

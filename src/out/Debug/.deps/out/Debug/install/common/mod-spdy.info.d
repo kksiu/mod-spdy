@@ -1,0 +1,1 @@
+cmd_out/Debug/install/common/mod-spdy.info := ln -f "install/common/mod-spdy.info" "out/Debug/install/common/mod-spdy.info" 2>/dev/null || (rm -rf "out/Debug/install/common/mod-spdy.info" && cp -af "install/common/mod-spdy.info" "out/Debug/install/common/mod-spdy.info")

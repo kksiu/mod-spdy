@@ -1,0 +1,1 @@
+cmd_out/Debug/obj.target/net/libinstaweb_util.a := rm -f out/Debug/obj.target/net/libinstaweb_util.a && ar crsT out/Debug/obj.target/net/libinstaweb_util.a out/Debug/obj.target/instaweb_util/net/instaweb/util/function.o

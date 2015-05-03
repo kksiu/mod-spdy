@@ -1,0 +1,1 @@
+cmd_out/Debug/install/rpm/build.sh := ln -f "install/rpm/build.sh" "out/Debug/install/rpm/build.sh" 2>/dev/null || (rm -rf "out/Debug/install/rpm/build.sh" && cp -af "install/rpm/build.sh" "out/Debug/install/rpm/build.sh")

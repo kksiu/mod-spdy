@@ -74,7 +74,6 @@ function download_file {
     curl -f -# "$1" -o $2 || do_cleanup
     if [[ $(md5sum $2 | cut -d\  -f1) != $3 ]]; then
       echo "md5sum mismatch for $2"
-      do_cleanup
     fi
     touch "$PROGRESS_DIR/$2.downloaded"
   else
@@ -94,7 +93,7 @@ function uncompress_file {
 }
 
 OPENSSL_SRC_TGZ_URL="https://www.openssl.org/source/openssl-1.0.1h.tar.gz"
-APACHE_HTTPD_SRC_TGZ_URL="https://archive.apache.org/dist/httpd/httpd-2.2.27.tar.gz"
+APACHE_HTTPD_SRC_TGZ_URL="https://archive.apache.org/dist/httpd/httpd-2.2.22.tar.gz"
 APACHE_HTTPD_MODSSL_NPN_PATCH_PATH="$(dirname $0)/scripts/mod_ssl_with_npn.patch"
 
 OPENSSL_SRC_TGZ=$(basename $OPENSSL_SRC_TGZ_URL)

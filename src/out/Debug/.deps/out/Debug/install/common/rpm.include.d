@@ -1,0 +1,1 @@
+cmd_out/Debug/install/common/rpm.include := ln -f "install/common/rpm.include" "out/Debug/install/common/rpm.include" 2>/dev/null || (rm -rf "out/Debug/install/common/rpm.include" && cp -af "install/common/rpm.include" "out/Debug/install/common/rpm.include")

@@ -1,0 +1,1 @@
+cmd_out/Release/obj.target/base/libbase_static.a := rm -f out/Release/obj.target/base/libbase_static.a && ar crsT out/Release/obj.target/base/libbase_static.a out/Release/obj.target/base_static/third_party/chromium/src/base/base_switches.o

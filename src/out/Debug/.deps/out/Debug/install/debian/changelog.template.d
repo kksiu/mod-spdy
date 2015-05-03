@@ -1,0 +1,1 @@
+cmd_out/Debug/install/debian/changelog.template := ln -f "install/debian/changelog.template" "out/Debug/install/debian/changelog.template" 2>/dev/null || (rm -rf "out/Debug/install/debian/changelog.template" && cp -af "install/debian/changelog.template" "out/Debug/install/debian/changelog.template")

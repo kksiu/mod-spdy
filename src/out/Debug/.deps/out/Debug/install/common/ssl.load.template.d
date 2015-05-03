@@ -1,0 +1,1 @@
+cmd_out/Debug/install/common/ssl.load.template := ln -f "install/common/ssl.load.template" "out/Debug/install/common/ssl.load.template" 2>/dev/null || (rm -rf "out/Debug/install/common/ssl.load.template" && cp -af "install/common/ssl.load.template" "out/Debug/install/common/ssl.load.template")

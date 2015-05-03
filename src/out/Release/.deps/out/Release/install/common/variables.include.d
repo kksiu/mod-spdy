@@ -1,0 +1,1 @@
+cmd_out/Release/install/common/variables.include := ln -f "install/common/variables.include" "out/Release/install/common/variables.include" 2>/dev/null || (rm -rf "out/Release/install/common/variables.include" && cp -af "install/common/variables.include" "out/Release/install/common/variables.include")

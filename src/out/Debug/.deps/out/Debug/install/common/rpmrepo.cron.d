@@ -1,0 +1,1 @@
+cmd_out/Debug/install/common/rpmrepo.cron := ln -f "install/common/rpmrepo.cron" "out/Debug/install/common/rpmrepo.cron" 2>/dev/null || (rm -rf "out/Debug/install/common/rpmrepo.cron" && cp -af "install/common/rpmrepo.cron" "out/Debug/install/common/rpmrepo.cron")

@@ -1,0 +1,1 @@
+cmd_out/Debug/libmod_diagnostics.so := ln -f "out/Debug/obj.target/third_party/mod_diagnostics/libmod_diagnostics.so" "out/Debug/libmod_diagnostics.so" 2>/dev/null || (rm -rf "out/Debug/libmod_diagnostics.so" && cp -af "out/Debug/obj.target/third_party/mod_diagnostics/libmod_diagnostics.so" "out/Debug/libmod_diagnostics.so")

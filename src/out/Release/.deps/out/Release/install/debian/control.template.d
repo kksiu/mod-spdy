@@ -1,0 +1,1 @@
+cmd_out/Release/install/debian/control.template := ln -f "install/debian/control.template" "out/Release/install/debian/control.template" 2>/dev/null || (rm -rf "out/Release/install/debian/control.template" && cp -af "install/debian/control.template" "out/Release/install/debian/control.template")
