@@ -1,1 +1,0 @@
-cmd_out/Release/obj.target/testing/libgtest_main.a := rm -f out/Release/obj.target/testing/libgtest_main.a && ar crsT out/Release/obj.target/testing/libgtest_main.a out/Release/obj.target/gtest_main/testing/gtest/src/gtest_main.o

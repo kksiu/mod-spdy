@@ -1,1 +1,0 @@
-cmd_out/Debug/install/common/repo.cron := ln -f "install/common/repo.cron" "out/Debug/install/common/repo.cron" 2>/dev/null || (rm -rf "out/Debug/install/common/repo.cron" && cp -af "install/common/repo.cron" "out/Debug/install/common/repo.cron")

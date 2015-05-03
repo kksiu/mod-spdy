@@ -1,1 +1,0 @@
-cmd_out/Debug/obj.target/testing/libgtest_main.a := rm -f out/Debug/obj.target/testing/libgtest_main.a && ar crsT out/Debug/obj.target/testing/libgtest_main.a out/Debug/obj.target/gtest_main/testing/gtest/src/gtest_main.o

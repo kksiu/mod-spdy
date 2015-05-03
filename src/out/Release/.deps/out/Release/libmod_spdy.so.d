@@ -1,1 +1,0 @@
-cmd_out/Release/libmod_spdy.so := ln -f "out/Release/obj.target/mod_spdy/libmod_spdy.so" "out/Release/libmod_spdy.so" 2>/dev/null || (rm -rf "out/Release/libmod_spdy.so" && cp -af "out/Release/obj.target/mod_spdy/libmod_spdy.so" "out/Release/libmod_spdy.so")

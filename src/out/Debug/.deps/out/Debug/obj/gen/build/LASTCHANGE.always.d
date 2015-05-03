@@ -1,1 +1,0 @@
-cmd_out/Debug/obj/gen/build/LASTCHANGE.always := LD_LIBRARY_PATH=/home/user/mod-spdy/src/out/Debug/lib.host:/home/user/mod-spdy/src/out/Debug/lib.target:$$LD_LIBRARY_PATH; export LD_LIBRARY_PATH; cd build; mkdir -p /home/user/mod-spdy/src/out/Debug/obj/gen/build; python util/lastchange.py -o "/home/user/mod-spdy/src/out/Debug/obj/gen/build/LASTCHANGE" -d ../LASTCHANGE.in

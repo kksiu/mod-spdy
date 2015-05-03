@@ -1,1 +1,0 @@
-cmd_out/Release/install/common/installer.include := ln -f "install/common/installer.include" "out/Release/install/common/installer.include" 2>/dev/null || (rm -rf "out/Release/install/common/installer.include" && cp -af "install/common/installer.include" "out/Release/install/common/installer.include")

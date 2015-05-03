@@ -1,1 +1,0 @@
-cmd_out/Release/install/common/spdy.conf.template := ln -f "install/common/spdy.conf.template" "out/Release/install/common/spdy.conf.template" 2>/dev/null || (rm -rf "out/Release/install/common/spdy.conf.template" && cp -af "install/common/spdy.conf.template" "out/Release/install/common/spdy.conf.template")

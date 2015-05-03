@@ -1,1 +1,0 @@
-cmd_out/Debug/obj.target/third_party/mod_diagnostics/libmod_diagnostics.so := flock out/Debug/linker.lock g++ -shared -pthread -Wl,-z,noexecstack  -Wl,-soname=libmod_diagnostics.so -o out/Debug/obj.target/third_party/mod_diagnostics/libmod_diagnostics.so -Wl,--start-group out/Debug/obj.target/mod_diagnostics/third_party/mod_diagnostics/mod_diagnostics.o -Wl,--end-group 

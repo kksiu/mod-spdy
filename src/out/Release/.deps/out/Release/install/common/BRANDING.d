@@ -1,1 +1,0 @@
-cmd_out/Release/install/common/BRANDING := ln -f "install/common/BRANDING" "out/Release/install/common/BRANDING" 2>/dev/null || (rm -rf "out/Release/install/common/BRANDING" && cp -af "install/common/BRANDING" "out/Release/install/common/BRANDING")

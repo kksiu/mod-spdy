@@ -1,1 +1,0 @@
-cmd_out/Release/install/common/apt.include := ln -f "install/common/apt.include" "out/Release/install/common/apt.include" 2>/dev/null || (rm -rf "out/Release/install/common/apt.include" && cp -af "install/common/apt.include" "out/Release/install/common/apt.include")

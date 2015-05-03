@@ -1,1 +1,0 @@
-cmd_out/Debug/install/debian/postrm := ln -f "install/debian/postrm" "out/Debug/install/debian/postrm" 2>/dev/null || (rm -rf "out/Debug/install/debian/postrm" && cp -af "install/debian/postrm" "out/Debug/install/debian/postrm")

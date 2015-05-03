@@ -1,1 +1,0 @@
-cmd_out/Debug/obj.target/third_party/modp_b64/libmodp_b64.a := rm -f out/Debug/obj.target/third_party/modp_b64/libmodp_b64.a && ar crsT out/Debug/obj.target/third_party/modp_b64/libmodp_b64.a out/Debug/obj.target/modp_b64/third_party/modp_b64/modp_b64.o

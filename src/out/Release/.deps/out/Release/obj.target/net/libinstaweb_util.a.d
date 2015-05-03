@@ -1,1 +1,0 @@
-cmd_out/Release/obj.target/net/libinstaweb_util.a := rm -f out/Release/obj.target/net/libinstaweb_util.a && ar crsT out/Release/obj.target/net/libinstaweb_util.a out/Release/obj.target/instaweb_util/net/instaweb/util/function.o

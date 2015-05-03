@@ -1,1 +1,0 @@
-cmd_out/Debug/install/debian/build.sh := ln -f "install/debian/build.sh" "out/Debug/install/debian/build.sh" 2>/dev/null || (rm -rf "out/Debug/install/debian/build.sh" && cp -af "install/debian/build.sh" "out/Debug/install/debian/build.sh")
