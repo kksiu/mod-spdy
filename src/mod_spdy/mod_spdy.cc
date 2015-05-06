@@ -219,7 +219,6 @@ void ChildInit(apr_pool_t* pool, server_rec* server_list) {
   // We set mod_spdy's global logging level to that of the most verbose server
   // in the list.  The scoped logging handlers we establish will sometimes
   // restrict things further, if they are for a less verbose virtual host.
-  LOG(WARNING) << "HEY THIS IS A TEST " << max_apache_log_level << " " << top_level_config->vlog_level();
   mod_spdy::SetLoggingLevel(max_apache_log_level,
                             top_level_config->vlog_level());
 
@@ -358,8 +357,6 @@ int PreConnection(conn_rec* connection, void* csd) {
 // process this as a master SPDY connection and then return OK.
 int ProcessConnection(conn_rec* connection) {
   mod_spdy::ScopedConnectionLogHandler log_handler(connection);
-
-  LOG(WARNING) << "HELLO TEST TEST TEST TEST TEST TEST";
 
   // If mod_spdy is disabled on this server, don't use SPDY.
   const mod_spdy::SpdyServerConfig* config =

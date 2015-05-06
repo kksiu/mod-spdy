@@ -35,6 +35,7 @@ extern const char* const kReferer = "referer";
 extern const char* const kTransferEncoding = "transfer-encoding";
 extern const char* const kXAssociatedContent = "x-associated-content";
 extern const char* const kXModSpdy = "x-mod-spdy";
+extern const char* const kBloomFilter = "B-Cache";
 
 extern const char* const kChunked = "chunked";
 extern const char* const kGzipDeflate = "gzip,deflate";

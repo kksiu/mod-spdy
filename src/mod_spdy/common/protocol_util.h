@@ -36,6 +36,7 @@ extern const char* const kReferer;
 extern const char* const kTransferEncoding;
 extern const char* const kXAssociatedContent;
 extern const char* const kXModSpdy;
+extern const char* const kBloomFilter;
 
 // HTTP header values.
 extern const char* const kChunked;

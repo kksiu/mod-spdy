@@ -139,6 +139,7 @@ SpdyToHttpConverter::Status SpdyToHttpConverter::ConvertSynStreamFrame(
   }
 
   // Translate the headers to HTTP.
+  LOG(WARNING) << "SYN STREAM FRAME";
   GenerateLeadingHeaders(block);
 
   // If this is the last (i.e. only) frame on this stream, finish off the HTTP
@@ -182,6 +183,7 @@ SpdyToHttpConverter::Status SpdyToHttpConverter::ConvertHeadersFrame(
     }
 
     // Translate the headers to HTTP.
+    LOG(WARNING) << "HEADERS FRAME";
     GenerateLeadingHeaders(block);
   }
 
@@ -249,6 +251,9 @@ void SpdyToHttpConverter::GenerateLeadingHeaders(
     base::StringPiece key = it->first;
     const base::StringPiece value = it->second;
 
+    LOG(WARNING) << "KEY: " << key;
+    LOG(WARNING) << "VALUE: " << value;
+
     // Skip SPDY-specific (i.e. non-HTTP) headers.
     if (spdy_version() < spdy::SPDY_VERSION_3) {
       if (key == spdy::kSpdy2Method || key == spdy::kSpdy2Scheme ||
@@ -271,6 +276,11 @@ void SpdyToHttpConverter::GenerateLeadingHeaders(
     // know not to used chunked encoding.
     if (key == http::kContentLength) {
       use_chunking_ = false;
+    }
+      
+    //parse bloom filter
+    if(key == http::kBloomFilter) {
+      LOG(WARNING) << "FOUND BLOOM FILTER";
     }
 
     // The client shouldn't be sending us a Transfer-Encoding header; it's
