@@ -66,6 +66,7 @@ class ServerPushFilter {
   const SpdyServerConfig* server_cfg_;
   bool isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::string& hash);
   unsigned int murmur2(std::string& str, unsigned int seed);
+  std::vector<std::string> parseStringFromSpaces(std::string& string);
 
   DISALLOW_COPY_AND_ASSIGN(ServerPushFilter);
 };

@@ -15,6 +15,8 @@
 #include "mod_spdy/apache/filters/server_push_filter.h"
 
 #include <string>
+#include <sstream>
+#include <vector>
 
 #include "base/logging.h"
 #include "base/string_number_conversions.h"  // for StringToUint
@@ -149,9 +151,21 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 
   const char* charBloomFilter = apr_table_get(request_->headers_in, http::kBloomFilter);
   std::string bloomFilterValue;
-
+  unsigned int k = 0;
+  unsigned int m = 0;
+  
   if(charBloomFilter != NULL) {
-    bloomFilterValue = std::string(charBloomFilter);
+    std::string bloomFilterTotalString = std::string(charBloomFilter);
+    std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
+    LOG(WARNING) << "FOUND SOMETHING!!";
+
+    if(bloomFilterVector.size() == 3) {
+      bloomFilterValue = bloomFilterVector[2];
+      k = (unsigned int) std::stoul(bloomFilterVector[0], nullptr, 10);
+      m = (unsigned int) std::stoul(bloomFilterVector[1], nullptr, 10);
+
+      LOG(WARNING) << "K IS: " << k << " AND M IS: " << m;
+    }
   }
   
   //userAgentValue = std::string(apr_table_get(request_->headers_in, "user-agent"));
@@ -189,6 +203,9 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
         continue;
       }
     }
+
+    //now check if url is in the cache
+    LOG(WARNING) << "URL: " << url;
 
     // Populate the fake request headers for the pushed stream.
     net::SpdyHeaderBlock request_headers;
@@ -321,6 +338,19 @@ int ServerPushFilter::OnXAssociatedContent(
   static_cast<ServerPushFilter*>(server_push_filter)->
       ParseXAssociatedContentHeader(value);
   return 1;  // return zero to stop, or non-zero to continue iterating
+}
+
+std::vector<std::string> ServerPushFilter::parseStringFromSpaces(std::string& string) {
+  std::istringstream iss(string);
+  std::vector<std::string> returnVector;
+
+  while(iss) {
+    std::string tempWord;
+    iss >> tempWord;
+    returnVector.push_back(tempWord);
+  }
+
+  return returnVector;
 }
 
 }  // namespace mod_spdy
