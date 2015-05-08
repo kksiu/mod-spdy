@@ -157,14 +157,13 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
   if(charBloomFilter != NULL) {
     std::string bloomFilterTotalString = std::string(charBloomFilter);
     std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
-    LOG(WARNING) << "FOUND SOMETHING!! " << bloomFilterTotalString;
 
     if(bloomFilterVector.size() == 4) {
       bloomFilterValue = bloomFilterVector[2];
       k = (unsigned int) std::stoul(bloomFilterVector[0], nullptr, 10);
       m = (unsigned int) std::stoul(bloomFilterVector[1], nullptr, 10);
 
-      LOG(WARNING) << "K IS: " << k << " AND M IS: " << m;
+      LOG(WARNING) << "K: " << k << " M: " << m << " BF: " << bloomFilterTotalString;
     }
   }
   
@@ -208,8 +207,10 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     if(!bloomFilterValue.empty()) {
       std::string tempURL = "https://siu.email" + url;
       if(isContainedInHash(tempURL, k, m, bloomFilterValue)) {
-        LOG(WARNING) << "ACTUALLY CONTAINED IN HASH!";
+        LOG(WARNING) << tempURL << " ACTUALLY CONTAINED IN HASH!";
         continue;
+      } else {
+        LOG(WARNING) << tempURL << " NOT CONTAINED IN HASH!";
       }
     }
     
