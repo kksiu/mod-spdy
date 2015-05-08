@@ -157,9 +157,9 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
   if(charBloomFilter != NULL) {
     std::string bloomFilterTotalString = std::string(charBloomFilter);
     std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
-    LOG(WARNING) << "FOUND SOMETHING!! " << bloomFilterVector.size();
+    LOG(WARNING) << "FOUND SOMETHING!! " << bloomFilterTotalString;
 
-    if(bloomFilterVector.size() == 3) {
+    if(bloomFilterVector.size() == 4) {
       bloomFilterValue = bloomFilterVector[2];
       k = (unsigned int) std::stoul(bloomFilterVector[0], nullptr, 10);
       m = (unsigned int) std::stoul(bloomFilterVector[1], nullptr, 10);
