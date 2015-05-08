@@ -151,8 +151,8 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 
   const char* charBloomFilter = apr_table_get(request_->headers_in, http::kBloomFilter);
   std::string bloomFilterValue;
-  unsigned int k = 0;
-  unsigned int m = 0;
+  uint32_t k = 0;
+  uint32_t m = 0;
   
   if(charBloomFilter != NULL) {
     std::string bloomFilterTotalString = std::string(charBloomFilter);
@@ -160,8 +160,8 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 
     if(bloomFilterVector.size() == 4) {
       bloomFilterValue = bloomFilterVector[2];
-      k = (unsigned int) std::stoul(bloomFilterVector[0], nullptr, 10);
-      m = (unsigned int) std::stoul(bloomFilterVector[1], nullptr, 10);
+      k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
+      m = (uint32_t) std::stoul(bloomFilterVector[1], nullptr, 10);
     }
   }
   
@@ -285,12 +285,12 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 }
 
 //checks to see if the url is contained in the hash
-bool ServerPushFilter::isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::string& hash) {
-  unsigned int n = m / 10;
+bool ServerPushFilter::isContainedInHash(std::string& url, uint32_t k, uint32_t m, std::string& hash) {
+  uint32_t n = m / 10;
   std::string logIndices = "";
   for(size_t i = 0; i < n; i++) {
     for(size_t j = 0; j <= k; j++) {
-      unsigned int hashInd = murmur2(url, (unsigned int)j) % m;
+      unsigned int hashInd = murmur2(url, (uint32_t)j) % m;
       logIndices += " " + std::to_string(hashInd);
       if (hash.at((size_t)(hashInd) == '0') {
         return false;
@@ -302,11 +302,11 @@ bool ServerPushFilter::isContainedInHash(std::string& url, unsigned int k, unsig
 }
 
 //runs murmur hash and returns an index value
-unsigned int ServerPushFilter::murmur2(std::string& str, unsigned int seed) {
-  unsigned int l = (unsigned int) str.length();
-  unsigned long long h = (unsigned long long) (seed ^ l);
-  unsigned int i = 0;
-  unsigned long long k = 0;
+uint32_t ServerPushFilter::murmur2(std::string& str, uint32_t seed) {
+  uint32_t l = (uint32_t) str.length();
+  uint32_t h = (uint32_t) (seed ^ l);
+  uint32_t i = 0;
+  uint32_t k = 0;
 
   while (l >= 4) {
     k = ((str.at(i) & 0xff));
@@ -336,7 +336,7 @@ unsigned int ServerPushFilter::murmur2(std::string& str, unsigned int seed) {
   h ^= h >> 13;
   h = (((h & 0xffff) * 0x5bd1e995) + ((((h >> 16) * 0x5bd1e995) & 0xffff) << 16));
   h ^= h >> 15;
-  return (unsigned int)(h >> 0);
+  return (uint32_t)(h >> 0);
 }
 
 // static

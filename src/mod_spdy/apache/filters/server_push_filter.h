@@ -16,6 +16,7 @@
 #define MOD_SPDY_APACHE_FILTERS_SERVER_PUSH_FILTER_H_
 
 #include <string>
+#include <stdint.h>
 
 #include "apr_buckets.h"
 #include "util_filter.h"
@@ -64,8 +65,8 @@ class ServerPushFilter {
   SpdyStream* const stream_;
   request_rec* const request_;
   const SpdyServerConfig* server_cfg_;
-  bool isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::string& hash);
-  unsigned int murmur2(std::string& str, unsigned int seed);
+  bool isContainedInHash(std::string& url, uint32_t k, uint32_t m, std::string& hash);
+  uint32_t murmur2(std::string& str, uint32_t seed);
   std::vector<std::string> parseStringFromSpaces(std::string& string);
 
   DISALLOW_COPY_AND_ASSIGN(ServerPushFilter);
