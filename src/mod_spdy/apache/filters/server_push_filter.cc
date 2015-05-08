@@ -290,7 +290,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 //checks to see if the url is contained in the hash
 bool ServerPushFilter::isContainedInHash(std::string& url, uint32_t k, uint32_t m, std::string& hash) {
   std::string logIndices = "";
-  for(size_t i = 0; i <= k; i++) {
+  for(size_t i = 1; i <= k; i++) {
     unsigned int hashInd = murmur2(url, (uint32_t)i) % m;
     logIndices += " " + std::to_string(hashInd);
     if (hash.at((size_t)hashInd) == '0') {
