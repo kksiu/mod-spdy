@@ -147,7 +147,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
   AbsorbWhiteSpace(&value);
   bool first_url = true;
 
-  bloomFilterValue = std::string(apr_table_get(request_->headers_in, http::kBloomFilter));
+  //bloomFilterValue = std::string(apr_table_get(request_->headers_in, http::kBloomFilter));
   userAgentValue = std::string(apr_table_get(request_->headers_in, "user-agent"));
 
   LOG(WARNING) << "USER AGENT: " << userAgentValue;
