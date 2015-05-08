@@ -147,10 +147,15 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
   AbsorbWhiteSpace(&value);
   bool first_url = true;
 
-  //bloomFilterValue = std::string(apr_table_get(request_->headers_in, http::kBloomFilter));
-  userAgentValue = std::string(apr_table_get(request_->headers_in, "user-agent"));
+  const char* charBloomFilter = apr_table_get(request_->headers_in, http::kBloomFilter);
+  std::string bloomFilterValue;
 
-  LOG(WARNING) << "USER AGENT: " << userAgentValue;
+  if(charBloomFilter != NULL) {
+    bloomFilterValue = std::string(charBloomFilter);
+  }
+  
+  //userAgentValue = std::string(apr_table_get(request_->headers_in, "user-agent"));
+  //LOG(WARNING) << "USER AGENT: " << userAgentValue;
 
   while (!value.empty()) {
     // The URLs should be separated by commas, so a comma should proceed each
@@ -255,6 +260,55 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
         return;
     }
   }
+}
+
+//checks to see if the url is contained in the hash
+bool isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::string& hash) {
+  unsigned int n = m / 10;
+  for(size_t i = 0; i < n; i++) {
+    for(size_t j = 0; j <= k; j++) {
+      if (hash.at(murmurhash2_32_gc(url, j) % m) == '0') {
+        return false;
+      }
+    }
+  }
+  
+  return true;
+}
+
+//runs murmur hash and returns an index value
+unsigned int murmurhash2_32_gc(std::string& str, unsigned int seed) {
+  unsigned int l = (unsigned int) str.length();
+  unsigned long long h = (unsigned long long) (seed ^ l);
+  unsigned int i = 0;
+  unsigned long long = k;
+
+  while (l >= 4) {
+    k = ((str.at(i) & 0xff)) |
+      ((str.at(++i) & 0xff) << 8) |
+      ((str.at(++i) & 0xff) << 16) |
+      ((str.at(++i) & 0xff) << 24);
+
+    k = (((k & 0xffff) * 0x5bd1e995) + ((((k >> 16) * 0x5bd1e995) & 0xffff) << 16));
+    k ^= k >> 24;
+    k = (((k & 0xffff) * 0x5bd1e995) + ((((k >> 16) * 0x5bd1e995) & 0xffff) << 16));
+    h = (((h & 0xffff) * 0x5bd1e995) + ((((h >> 16) * 0x5bd1e995) & 0xffff) << 16)) ^ k;
+
+    l -= 4;
+    ++i;
+  }
+
+  switch (l) {
+    case 3: h ^= (str.at(i + 2) & 0xff) << 16;
+    case 2: h ^= (str.at(i + 1) & 0xff) << 8;
+    case 1: h ^= (str.at(i) & 0xff);
+            h = (((h & 0xffff) * 0x5bd1e995) + ((((h >> 16) * 0x5bd1e995) & 0xffff) << 16));
+  }
+
+  h ^= h >> 13;
+  h = (((h & 0xffff) * 0x5bd1e995) + ((((h >> 16) * 0x5bd1e995) & 0xffff) << 16));
+  h ^= h >> 15;
+  return h >> 0;
 }
 
 // static
