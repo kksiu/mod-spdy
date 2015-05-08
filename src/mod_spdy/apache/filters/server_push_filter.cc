@@ -149,6 +149,8 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
   AbsorbWhiteSpace(&value);
   bool first_url = true;
 
+  LOG(WARNING) << "ABOUT TO PUSH STUFF";
+
   const char* charBloomFilter = apr_table_get(request_->headers_in, http::kBloomFilter);
   std::string bloomFilterValue;
   uint32_t k = 0;
@@ -201,9 +203,10 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     //now check if url is in the cache (if bloom filter happened)
     if(!bloomFilterValue.empty()) {
       std::string tempURL = "https://siu.email" + url;
-      LOG(WARNING) << tempURL;
       if(isContainedInHash(tempURL, k, m, bloomFilterValue)) {
         continue;
+      } else {
+        LOG(WARNING) << tempURL << " NOT FOUND IN CACHE!";
       }
     }
     
