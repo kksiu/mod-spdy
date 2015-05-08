@@ -272,12 +272,6 @@ void SpdyToHttpConverter::GenerateLeadingHeaders(
     if (key == http::kContentLength) {
       use_chunking_ = false;
     }
-      
-    //parse bloom filter
-    if(key == http::kBloomFilter) {
-      LOG(WARNING) << "FOUND BLOOM FILTER";
-      
-    }
 
     // The client shouldn't be sending us a Transfer-Encoding header; it's
     // pretty pointless over SPDY.  If they do send one, just ignore it; we may
