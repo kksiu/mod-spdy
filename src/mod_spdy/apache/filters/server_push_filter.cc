@@ -162,9 +162,6 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
       bloomFilterValue = bloomFilterVector[2];
       k = (unsigned int) std::stoul(bloomFilterVector[0], nullptr, 10);
       m = (unsigned int) std::stoul(bloomFilterVector[1], nullptr, 10);
-
-      LOG(WARNING) << "K: " << k << " M: " << m << " BF: " << bloomFilterValue;
-      LOG(WARNING) << "SIZE OF BF: " << bloomFilterValue.size();
     }
   }
   
@@ -207,11 +204,10 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     //now check if url is in the cache (if bloom filter happened)
     if(!bloomFilterValue.empty()) {
       std::string tempURL = "https://siu.email" + url;
+      LOG(WARNING) << tempURL;
       if(isContainedInHash(tempURL, k, m, bloomFilterValue)) {
-        LOG(WARNING) << tempURL << " ACTUALLY CONTAINED IN HASH!";
+        LOG(WARNING) << "CONTAINED IN HASH!!";
         continue;
-      } else {
-        LOG(WARNING) << tempURL << " NOT CONTAINED IN HASH!";
       }
     }
     
@@ -291,15 +287,17 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 //checks to see if the url is contained in the hash
 bool ServerPushFilter::isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::string& hash) {
   unsigned int n = m / 10;
+  std::string logIndices = "";
   for(size_t i = 0; i < n; i++) {
     for(size_t j = 0; j <= k; j++) {
-      unsigned int hashInd = murmur2(url, (unsigned int)j);
-      if (hash.at((size_t)(hashInd % m)) == '0') {
+      unsigned int hashInd = murmur2(url, (unsigned int)j) % m;
+      logIndices += " " + std::to_string(hashInd);
+      if (hash.at((size_t)(hashInd) == '0') {
         return false;
       }
     }
   }
-
+  LOG(WARNING) << "INDICES" << logIndices;
   return true;
 }
 
