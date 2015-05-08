@@ -158,9 +158,6 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     std::string bloomFilterTotalString = std::string(charBloomFilter);
     std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
 
-    LOG(WARNING) << "FOUND BF: " << bloomFilterVector.size();
-    LOG(WARNING) << "BF CONTENTS: " << bloomFilterTotalString;
-
     if(bloomFilterVector.size() == 4) {
       bloomFilterValue = bloomFilterVector[2];
       k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
@@ -168,9 +165,6 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     }
   }
   
-  //userAgentValue = std::string(apr_table_get(request_->headers_in, "user-agent"));
-  //LOG(WARNING) << "USER AGENT: " << userAgentValue;
-
   while (!value.empty()) {
     // The URLs should be separated by commas, so a comma should proceed each
     // URL except the first.
@@ -209,7 +203,6 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
       std::string tempURL = "https://siu.email" + url;
       LOG(WARNING) << tempURL;
       if(isContainedInHash(tempURL, k, m, bloomFilterValue)) {
-        LOG(WARNING) << "CONTAINED IN HASH!!";
         continue;
       }
     }
@@ -294,11 +287,9 @@ bool ServerPushFilter::isContainedInHash(std::string& url, uint32_t k, uint32_t 
     unsigned int hashInd = murmur2(url, (uint32_t)i) % m;
     logIndices += " " + std::to_string(hashInd);
     if (hash.at((size_t)hashInd) == '0') {
-      LOG(WARNING) << "INDICES" << logIndices;
       return false;
     }
   }
-  LOG(WARNING) << "INDICES" << logIndices;
   return true;
 }
 
