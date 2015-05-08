@@ -163,7 +163,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
       k = (unsigned int) std::stoul(bloomFilterVector[0], nullptr, 10);
       m = (unsigned int) std::stoul(bloomFilterVector[1], nullptr, 10);
 
-      LOG(WARNING) << "K: " << k << " M: " << m << " BF: " << bloomFilterTotalString;
+      LOG(WARNING) << "K: " << k << " M: " << m << " BF: " << bloomFilterValue;
     }
   }
   
