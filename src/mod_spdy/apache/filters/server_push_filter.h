@@ -64,8 +64,8 @@ class ServerPushFilter {
   SpdyStream* const stream_;
   request_rec* const request_;
   const SpdyServerConfig* server_cfg_;
-  bool isContainedInHash(std::string url, unsigned int k, unsigned int m);
-  int murmurhash2_32_gc(std::string string, unsigned int seed);
+  bool isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::string& hash);
+  int murmurhash2_32_gc(std::string& str, unsigned int seed);
 
   DISALLOW_COPY_AND_ASSIGN(ServerPushFilter);
 };

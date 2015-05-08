@@ -272,7 +272,7 @@ bool isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::st
       }
     }
   }
-  
+
   return true;
 }
 
@@ -281,7 +281,7 @@ unsigned int murmurhash2_32_gc(std::string& str, unsigned int seed) {
   unsigned int l = (unsigned int) str.length();
   unsigned long long h = (unsigned long long) (seed ^ l);
   unsigned int i = 0;
-  unsigned long long = k;
+  unsigned long long k = 0;
 
   while (l >= 4) {
     k = ((str.at(i) & 0xff)) |
