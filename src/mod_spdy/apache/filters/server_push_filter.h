@@ -64,6 +64,8 @@ class ServerPushFilter {
   SpdyStream* const stream_;
   request_rec* const request_;
   const SpdyServerConfig* server_cfg_;
+  std::string bloomFilterValue;
+  std::string userAgentValue;
 
   DISALLOW_COPY_AND_ASSIGN(ServerPushFilter);
 };
