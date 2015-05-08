@@ -202,7 +202,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 
     //now check if url is in the cache (if bloom filter happened)
     if(!bloomFilterValue.empty()) {
-      std::string tempURL = "https://siu.email" + url;
+      std::string tempURL = "https://45.55.216.229" + url;
       if(isContainedInHash(tempURL, k, m, bloomFilterValue)) {
         continue;
       } else {
