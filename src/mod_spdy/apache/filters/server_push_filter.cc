@@ -158,6 +158,9 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     std::string bloomFilterTotalString = std::string(charBloomFilter);
     std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
 
+    LOG(WARNING) << "FOUND BF: " << bloomFilterVector.size();
+    LOG(WARNING) << "BF CONTENTS: " << bloomFilterTotalString;
+
     if(bloomFilterVector.size() == 4) {
       bloomFilterValue = bloomFilterVector[2];
       k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
