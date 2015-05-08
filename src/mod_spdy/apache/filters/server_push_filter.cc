@@ -296,6 +296,7 @@ bool ServerPushFilter::isContainedInHash(std::string& url, uint32_t k, uint32_t 
       unsigned int hashInd = murmur2(url, (uint32_t)j) % m;
       logIndices += " " + std::to_string(hashInd);
       if (hash.at((size_t)hashInd) == '0') {
+        LOG(WARNING) << "INDICES" << logIndices;
         return false;
       }
     }
