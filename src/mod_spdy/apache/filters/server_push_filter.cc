@@ -263,11 +263,12 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 }
 
 //checks to see if the url is contained in the hash
-bool isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::string& hash) {
+bool ServerPushFilter::isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::string& hash) {
   unsigned int n = m / 10;
   for(size_t i = 0; i < n; i++) {
     for(size_t j = 0; j <= k; j++) {
-      if (hash.at((size_t) (murmurhash2_32_gc(url, (unsigned int)j) % m)) == '0') {
+      unsigned int hashInd = murmur2(url, (unsigned int)j);
+      if (hash.at((size_t)(hashInd % m)) == '0') {
         return false;
       }
     }
@@ -277,7 +278,7 @@ bool isContainedInHash(std::string& url, unsigned int k, unsigned int m, std::st
 }
 
 //runs murmur hash and returns an index value
-unsigned int murmurhash2_32_gc(std::string& str, unsigned int seed) {
+unsigned int ServerPushFilter::murmur2(std::string& str, unsigned int seed) {
   unsigned int l = (unsigned int) str.length();
   unsigned long long h = (unsigned long long) (seed ^ l);
   unsigned int i = 0;
@@ -311,7 +312,7 @@ unsigned int murmurhash2_32_gc(std::string& str, unsigned int seed) {
   h ^= h >> 13;
   h = (((h & 0xffff) * 0x5bd1e995) + ((((h >> 16) * 0x5bd1e995) & 0xffff) << 16));
   h ^= h >> 15;
-  return h >> 0;
+  return (unsigned int)(h >> 0);
 }
 
 // static
