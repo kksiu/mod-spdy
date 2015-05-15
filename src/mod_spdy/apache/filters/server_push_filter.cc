@@ -167,7 +167,6 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
 
     if(bloomFilterVector.size() == 4) {
-      LOG(WARNING) << "HEY " << bloomFilterVector[2];
       bloomFilterValue = base64_decode(bloomFilterVector[2]);
       bloomFilterValueVec = std::vector<char>(bloomFilterValue.begin(), bloomFilterValue.end());
       k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
@@ -211,12 +210,12 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     }
 
     //now check if url is in the cache (if bloom filter happened)
-    // if(!bloomFilterValue.empty()) {
-    //   std::string tempURL = "https://siu.email" + url;
-    //   if(isContainedInHash(tempURL, k, m, bloomFilterValueVec)) {
-    //     continue;
-    //   }
-    // }
+    if(!bloomFilterValueVec.empty()) {
+      std::string tempURL = "https://siu.email" + url;
+      if(isContainedInHash(tempURL, k, m, bloomFilterValueVec)) {
+        continue;
+      }
+    }
     
 
     // Populate the fake request headers for the pushed stream.
