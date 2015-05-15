@@ -152,22 +152,24 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
   LOG(WARNING) << "ABOUT TO PUSH STUFF";
 
   const char* charBloomFilter = apr_table_get(request_->headers_in, http::kBloomFilter);
+  LOG(WARNING) << "SIZE OF CHAR ARRAY: " << strlen(charBloomFilter);
+
   std::string bloomFilterValue;
   uint32_t k = 0;
   uint32_t m = 0;
   
-  if(charBloomFilter != NULL) {
-    std::string bloomFilterTotalString = std::string(charBloomFilter);
-    std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
+  // if(charBloomFilter != NULL) {
+  //   std::string bloomFilterTotalString = std::string(charBloomFilter);
+  //   std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
 
-    if(bloomFilterVector.size() == 4) {
-      bloomFilterValue = bloomFilterVector[2];
-      k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
-      m = (uint32_t) std::stoul(bloomFilterVector[1], nullptr, 10);
+  //   if(bloomFilterVector.size() == 4) {
+  //     bloomFilterValue = bloomFilterVector[2];
+  //     k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
+  //     m = (uint32_t) std::stoul(bloomFilterVector[1], nullptr, 10);
 
-      LOG(WARNING) << "BF: " << bloomFilterValue;
-    }
-  }
+  //     LOG(WARNING) << "BF: " << bloomFilterValue;
+  //   }
+  // }
   
   while (!value.empty()) {
     // The URLs should be separated by commas, so a comma should proceed each
