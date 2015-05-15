@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #include "mod_spdy/apache/filters/server_push_filter.h"
-#include "mod_spdy/apache/filters/base64.h"
+//#include "mod_spdy/apache/filters/base64.h"
 
 #include <string>
 #include <sstream>
@@ -154,7 +154,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
 
   const char* charBloomFilter = apr_table_get(request_->headers_in, http::kBloomFilter);
   std::string test(charBloomFilter);
-  test = base64_decode(test);
+  //test = base64_decode(test);
   LOG(WARNING) << "SIZE OF CHAR ARRAY: " << strlen(charBloomFilter) << "SIZE OF STRING: " << test.length();
 
   std::string bloomFilterValue;
