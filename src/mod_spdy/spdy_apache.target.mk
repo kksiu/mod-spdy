@@ -108,6 +108,7 @@ OBJS := \
 	$(obj).target/$(TARGET)/mod_spdy/apache/config_commands.o \
 	$(obj).target/$(TARGET)/mod_spdy/apache/config_util.o \
 	$(obj).target/$(TARGET)/mod_spdy/apache/filters/http_to_spdy_filter.o \
+	$(obj).target/$(TARGET)/mod_spdy/apache/filters/base64.o \
 	$(obj).target/$(TARGET)/mod_spdy/apache/filters/server_push_filter.o \
 	$(obj).target/$(TARGET)/mod_spdy/apache/filters/spdy_to_http_filter.o \
 	$(obj).target/$(TARGET)/mod_spdy/apache/id_pool.o \

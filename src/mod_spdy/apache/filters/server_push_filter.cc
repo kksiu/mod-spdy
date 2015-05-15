@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "mod_spdy/apache/filters/server_push_filter.h"
+#include "mod_spdy/apache/filters/base64.h"
 
 #include <string>
 #include <sstream>
@@ -152,22 +153,26 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
   LOG(WARNING) << "ABOUT TO PUSH STUFF";
 
   const char* charBloomFilter = apr_table_get(request_->headers_in, http::kBloomFilter);
+  std::string test(charBloomFilter);
+  test = base64_decode(test);
+  LOG(WARNING) << "SIZE OF CHAR ARRAY: " << strlen(charBloomFilter) << "SIZE OF STRING: " << test.length();
+
   std::string bloomFilterValue;
   uint32_t k = 0;
   uint32_t m = 0;
   
-  if(charBloomFilter != NULL) {
-    std::string bloomFilterTotalString = std::string(charBloomFilter);
-    std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
+  // if(charBloomFilter != NULL) {
+  //   std::string bloomFilterTotalString = std::string(charBloomFilter);
+  //   std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
 
-    if(bloomFilterVector.size() == 4) {
-      bloomFilterValue = bloomFilterVector[2];
-      k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
-      m = (uint32_t) std::stoul(bloomFilterVector[1], nullptr, 10);
+  //   if(bloomFilterVector.size() == 4) {
+  //     bloomFilterValue = bloomFilterVector[2];
+  //     k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
+  //     m = (uint32_t) std::stoul(bloomFilterVector[1], nullptr, 10);
 
-      LOG(WARNING) << "BF: " << bloomFilterValue;
-    }
-  }
+  //     LOG(WARNING) << "BF: " << bloomFilterValue;
+  //   }
+  // }
   
   while (!value.empty()) {
     // The URLs should be separated by commas, so a comma should proceed each

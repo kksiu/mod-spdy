@@ -112,6 +112,7 @@ INCS_Release := \
 
 OBJS := \
 	$(obj).target/$(TARGET)/mod_spdy/apache/filters/http_to_spdy_filter_test.o \
+	$(obj).target/$(TARGET)/mod_spdy/apache/filters/base64.o \
 	$(obj).target/$(TARGET)/mod_spdy/apache/filters/server_push_filter_test.o \
 	$(obj).target/$(TARGET)/mod_spdy/apache/filters/spdy_to_http_filter_test.o \
 	$(obj).target/$(TARGET)/mod_spdy/apache/id_pool_test.o \
