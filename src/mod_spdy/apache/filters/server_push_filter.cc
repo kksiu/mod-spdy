@@ -211,12 +211,12 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     }
 
     //now check if url is in the cache (if bloom filter happened)
-    if(!bloomFilterValue.empty()) {
-      std::string tempURL = "https://siu.email" + url;
-      if(isContainedInHash(tempURL, k, m, bloomFilterValueVec)) {
-        continue;
-      }
-    }
+    // if(!bloomFilterValue.empty()) {
+    //   std::string tempURL = "https://siu.email" + url;
+    //   if(isContainedInHash(tempURL, k, m, bloomFilterValueVec)) {
+    //     continue;
+    //   }
+    // }
     
 
     // Populate the fake request headers for the pushed stream.
