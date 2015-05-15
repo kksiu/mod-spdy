@@ -167,6 +167,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     std::vector<std::string> bloomFilterVector = parseStringFromSpaces(bloomFilterTotalString);
 
     if(bloomFilterVector.size() == 4) {
+      LOG(WARNING) << "HEY " << bloomFilterVector[2];
       bloomFilterValue = base64_decode(bloomFilterVector[2]);
       bloomFilterValueVec = std::vector<char>(bloomFilterValue.begin(), bloomFilterValue.end());
       k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
