@@ -73,7 +73,6 @@
         '<(DEPTH)/third_party/apache/httpd/httpd.gyp:include',
       ],
       'sources': [
-        'apache/filters/base64.cc',
         'apache/apache_spdy_session_io.cc',
         'apache/apache_spdy_stream_task_factory.cc',
         'apache/config_commands.cc',
