@@ -65,7 +65,7 @@ class ServerPushFilter {
   SpdyStream* const stream_;
   request_rec* const request_;
   const SpdyServerConfig* server_cfg_;
-  bool isContainedInHash(std::string& url, uint32_t k, uint32_t m, std::string& hash);
+  bool isContainedInHash(std::string& url, uint32_t k, uint32_t m, std::vector<char>& hash);
   uint32_t murmur2(std::string& str, uint32_t seed);
   std::vector<std::string> parseStringFromSpaces(std::string& string);
 
