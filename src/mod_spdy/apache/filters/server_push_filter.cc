@@ -214,8 +214,6 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
       std::string tempURL = "https://siu.email" + url;
       if(isContainedInHash(tempURL, k, m, bloomFilterValueVec)) {
         continue;
-      } else {
-        LOG(WARNING) << tempURL << " NOT FOUND IN CACHE!";
       }
     }
     
@@ -300,8 +298,10 @@ bool ServerPushFilter::isContainedInHash(std::string& url, uint32_t k, uint32_t 
     unsigned int tempHash = murmur2(url, (uint32_t)i) % m;
     int tempByte = (int) floor((double)tempHash / 8.0);
     int shift = 7 - (tempHash % 8);
-    if (((uint8_t) hash[tempByte] & (1 << shift)) != 0) {
-      LOG(WARNING) << " FAILED " << url << " " << hash[tempByte] << " " << (1 << shift);
+    uint8_t numToCompare =  hash[tempByte];
+    if ((numToCompare & (1 << shift)) != 0) {
+      LOG(WARNING) << "FAILED " << url << " " << numToCompare << " " << (1 << shift);
+      LOG(WARNING) << "INDEX " << tempByte;
       return false;
     }
   }
