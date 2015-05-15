@@ -299,14 +299,14 @@ bool ServerPushFilter::isContainedInHash(std::string& url, uint32_t k, uint32_t 
     int tempByte = (int) floor((double)tempHash / 8.0);
     int shift = 7 - (tempHash % 8);
     uint8_t numToCompare =  hash[tempByte];
-    if ((numToCompare & (1 << shift)) != 0) {
-      LOG(WARNING) << "FAILED " << url << " " << numToCompare << " " << (1 << shift);
-      LOG(WARNING) << "INDEX " << tempByte;
+
+    //if it is not located in the byte array, return false
+    if ((numToCompare & (1 << shift)) == 0) {
+      LOG(WARNING) << " FAILURE " << url;
       return false;
     }
   }
 
-  LOG(WARNING) << " SUCCESS " << url;
   return true;
 }
 
