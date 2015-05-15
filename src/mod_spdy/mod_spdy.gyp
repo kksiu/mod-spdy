@@ -79,6 +79,7 @@
         'apache/config_util.cc',
         'apache/filters/http_to_spdy_filter.cc',
         'apache/filters/server_push_filter.cc',
+        'apache/filters/base64.cc',
         'apache/filters/spdy_to_http_filter.cc',
         'apache/id_pool.c',
         'apache/log_message_handler.cc',
