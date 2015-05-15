@@ -161,6 +161,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
   std::vector<char> bloomFilterValueVec;
   uint32_t k = 0;
   uint32_t m = 0;
+  bool hasBloomFilter = false;
   
   if(charBloomFilter != NULL) {
     std::string bloomFilterTotalString = std::string(charBloomFilter);
@@ -171,6 +172,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
       bloomFilterValueVec = std::vector<char>(bloomFilterValue.begin(), bloomFilterValue.end());
       k = (uint32_t) std::stoul(bloomFilterVector[0], nullptr, 10);
       m = (uint32_t) std::stoul(bloomFilterVector[1], nullptr, 10);
+      hasBloomFilter = true;
 
       LOG(WARNING) << "BF: " << bloomFilterValue.size();
     }
@@ -210,7 +212,7 @@ void ServerPushFilter::ParseXAssociatedContentHeader(base::StringPiece value) {
     }
 
     //now check if url is in the cache (if bloom filter happened)
-    if(!bloomFilterValueVec.empty()) {
+    if(hasBloomFilter) {
       std::string tempURL = "https://siu.email" + url;
       if(isContainedInHash(tempURL, k, m, bloomFilterValueVec)) {
         continue;
